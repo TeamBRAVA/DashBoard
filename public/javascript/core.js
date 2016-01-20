@@ -1,7 +1,11 @@
 var redAPI = angular.module('redAPI', []);
 
 redAPI.controller('mainController', function ($scope, $http) {
-
+    $scope.formLogin = {}
+    
+    $scope.login = function(){
+        //call api to connect
+    }
 });
 
 redAPI.controller('resultController', function ($scope, $http) {

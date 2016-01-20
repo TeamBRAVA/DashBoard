@@ -23,7 +23,19 @@
 <body ng-controller="mainController">
     <div class="container">
 
-        <p>yo t'es sur l'index et ca marche</p>
+        <h1>yo t'es sur l'index et ca marche</h1>
+        
+        <form>
+                    <div class="form-group">
+
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" ng-model="formLogin.username" placeholder="username">
+                        <input type="password" class="form-control input-lg text-center" ng-model="formLogin.password" placeholder="password">
+                    </div>
+
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="login()">Login</button>
+                </form>
         <a href="devices.html">list of devices</a>
     </div>
 
