@@ -8,7 +8,7 @@ redAPI.controller('resultController', function ($scope, $http) {
     $scope.formData = {};
     
     // when landing on the page, get all devices and show them
-    $http.get('/result')
+    $http.get("http://localhost:3000/result")
         .success(function (data) {
             $scope.devices = data;
             console.log(data);
