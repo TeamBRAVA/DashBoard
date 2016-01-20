@@ -18,9 +18,9 @@ redAPI.controller('resultController', function ($scope, $http) {
         });
 
     $scope.addData = function () {
-        $http.post('/API/device', $scope.formData)
+        $http.post("http://localhost:3000/device", $scope.formData)
             .success(function () {
-                $http.get('/result')
+                $http.get('http://localhost:3000/result')
                     .success(function (data) {
                         $scope.devices = data;
                         console.log(data);
