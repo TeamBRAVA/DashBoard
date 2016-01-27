@@ -57,7 +57,7 @@
 
                 <!-- HEADER AND DEVICES COUNT -->
                 <div class="jumbotron text-center">
-                    <h1>RED API | devices registered : <span class="label label-info">{{ devices.length }}</span></h1>
+                    <h1>RED API | devices : <span class="label label-info">{{ devices.length }}</span></h1>
                 </div>
 
                 <!-- TAB USER / DEVICE-->
@@ -68,77 +68,30 @@
 
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="users">
-                        <!-- Users LIST -->
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-4">
-
-                                <!-- LOOP OVER THE users IN $scope.users -->
-                                <div ng-repeat="user in users">
+                        <!-- LOOP OVER THE users IN $scope.users -->
+                        <div ng-repeat="user in users">
+                            <label>
+                                <h2>userid : {{ user.userid }}</h2>
+                                <div ng-repeat="data in users.data">
                                     <label>
-                                        <h2>userid : {{ user.userid }}</h2>
-                                        <div ng-repeat="data in users.data">
-                                            <label>
-                                                informations
-                                            </label>
-                                        </div>
+                                        informations
                                     </label>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- form to add new data -->
-                        <div id="user-form" class="row">
-                            <div class="col-sm-8 col-sm-offset-2 text-center">
-                                <form>
-                                    <div class="form-group">
-
-                                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                                        <input type="text" class="form-control input-lg text-center" ng-model="formData.deviceid" placeholder="deviceid">
-                                        <input type="text" class="form-control input-lg text-center" ng-model="formData.datatype" placeholder="datatype">
-                                        <input type="text" class="form-control input-lg text-center" ng-model="formData.value" placeholder="value">
-                                    </div>
-
-                                    <!-- createToDo() WILL CREATE NEW TODOS -->
-                                    <button type="submit" class="btn btn-primary btn-lg" ng-click="addUser()">Add</button>
-                                </form>
-                            </div>
+                            </label>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="devices">
-                        <!-- Devices LIST -->
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-4">
+                        <!-- LOOP OVER THE devices IN $scope.devices -->
+                        <div ng-repeat="device in devices">
 
-                                <!-- LOOP OVER THE devices IN $scope.devices -->
-                                <div ng-repeat="device in devices">
-                                    
+                            <label>
+                                <h2>deviceid : {{ device._id }}</h2>
+                                <div ng-repeat="data in device.data">
                                     <label>
-                                        <h2>deviceid : {{ device.deviceid }}</h2>
-                                        <div ng-repeat="data in device.data">
-                                            <label>
-                                                {{data.datatype}} / {{data.value}} / {{data.date}}
-                                            </label>
-                                        </div>
+                                        {{data.datatype}} / {{data.value}} / {{data.date}}
                                     </label>
-
-                                    <!-- form to add new data -->
-                                    <div id="device-form" class="row">
-                                        <div class="col-sm-8 col-sm-offset-2">
-                                            <form>
-                                                <div class="form-group">
-                                                    
-                                                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                                                    <input type="text" class="form-control input-lg" ng-model="formData.datatype" placeholder="datatype">
-                                                    <input type="text" class="form-control input-lg" ng-model="formData.value" placeholder="value">
-                                                </div>
-
-                                                <!-- createToDo() WILL CREATE NEW TODOS -->
-                                                <button type="submit" class="btn btn-primary btn-lg" ng-click="addData()">Add</button>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
+                            </label>
                         </div>
                     </div>
                 </div>
