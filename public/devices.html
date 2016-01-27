@@ -111,6 +111,7 @@
 
                                 <!-- LOOP OVER THE devices IN $scope.devices -->
                                 <div ng-repeat="device in devices">
+                                    
                                     <label>
                                         <h2>deviceid : {{ device.deviceid }}</h2>
                                         <div ng-repeat="data in device.data">
@@ -119,25 +120,24 @@
                                             </label>
                                         </div>
                                     </label>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- form to add new data -->
-                        <div id="device-form" class="row">
-                            <div class="col-sm-8 col-sm-offset-2 text-center">
-                                <form>
-                                    <div class="form-group">
+                                    <!-- form to add new data -->
+                                    <div id="device-form" class="row">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <form>
+                                                <div class="form-group">
+                                                    
+                                                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                                                    <input type="text" class="form-control input-lg" ng-model="formData.datatype" placeholder="datatype">
+                                                    <input type="text" class="form-control input-lg" ng-model="formData.value" placeholder="value">
+                                                </div>
 
-                                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                                        <input type="text" class="form-control input-lg text-center" ng-model="formData.deviceid" placeholder="deviceid">
-                                        <input type="text" class="form-control input-lg text-center" ng-model="formData.datatype" placeholder="datatype">
-                                        <input type="text" class="form-control input-lg text-center" ng-model="formData.value" placeholder="value">
+                                                <!-- createToDo() WILL CREATE NEW TODOS -->
+                                                <button type="submit" class="btn btn-primary btn-lg" ng-click="addData()">Add</button>
+                                            </form>
+                                        </div>
                                     </div>
-
-                                    <!-- createToDo() WILL CREATE NEW TODOS -->
-                                    <button type="submit" class="btn btn-primary btn-lg" ng-click="addData()">Add</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

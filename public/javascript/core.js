@@ -1,4 +1,5 @@
 var redAPI = angular.module('redAPI', []);
+var url = "http://localhost:3000";
 
 redAPI.controller('mainController', function ($scope, $http) {
     $scope.formLogin = {}
@@ -12,7 +13,7 @@ redAPI.controller('resultController', function ($scope, $http) {
     $scope.formData = {};
     
     // when landing on the page, get all devices and show them
-    $http.get("http://localhost:3000/result")
+    $http.get(url + "/result")
         .success(function (data) {
             $scope.devices = data;
             console.log(data);
@@ -22,9 +23,9 @@ redAPI.controller('resultController', function ($scope, $http) {
         });
 
     $scope.addData = function () {
-        $http.post("http://localhost:3000/device", $scope.formData)
+        $http.post(url + "/device", $scope.formData)
             .success(function () {
-                $http.get('http://localhost:3000/result')
+                $http.get(url + '/result')
                     .success(function (data) {
                         $scope.devices = data;
                         console.log(data);
