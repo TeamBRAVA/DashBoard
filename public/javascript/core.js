@@ -1,5 +1,5 @@
 var redAPI = angular.module('redAPI', []);
-var url = "http://localhost:3000";
+var url = "api.red.jankobox.fr";
 
 redAPI.controller('mainController', function ($scope, $http) {
     $scope.formLogin = {}
