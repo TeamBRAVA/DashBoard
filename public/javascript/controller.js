@@ -7,7 +7,7 @@
 
 var deviceApp = angular.module('deviceApp', []);
 
-devicecatApp.controller('deviceListCtrl', ['$scope', '$http', function($scope, $http) {
+deviceApp.controller('deviceListCtrl', ['$scope', '$http', function($scope, $http) {
     $http.get('http://dev2.red-cloud.io/device/result').success(function(data) {
         $scope.deviceData = data;
     });

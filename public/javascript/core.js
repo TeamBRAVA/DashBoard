@@ -9,8 +9,9 @@ redAPI.controller('mainController', function ($scope, $http) {
     }
 });
 
-redAPI.controller('resultController', function ($scope, $http) {
+redAPI.controller('resultController', function ($scope, $http, Auth) {
     $scope.formData = {};
+    $scope.token = Auth.getToken();
     
     // when landing on the page, get all devices and show them
     $http.get(url + "/device/result")

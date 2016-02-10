@@ -2,42 +2,58 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="redAPI">
+<html ng-app="redApp">
+
 <head>
     <!-- META -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
 
     <title>RED</title>
 
     <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
 
     <!-- SPELLS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-    <script src="../javascript/core.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <!-- load angular -->
+    <script src="../javascript/app.js"></script>
+    <script src="../javascript/controllers.js"></script>
+    <script src="../javascript/services.js"></script>
+    
 
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
-<body ng-controller="mainController">
+
+<body>
     <div class="container">
 
         <h1>yo t'es sur l'index et ca marche</h1>
-        
-        <form>
-                    <div class="form-group">
 
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" ng-model="formLogin.username" placeholder="username">
-                        <input type="password" class="form-control input-lg text-center" ng-model="formLogin.password" placeholder="password">
-                    </div>
+        <form data-ng-controller="authController">
+            <div class="form-group">
 
-                    <!-- createToDo() WILL CREATE NEW TODOS -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="login()">Login</button>
-                </form>
+                <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                <input type="text" class="form-control input-lg text-center" ng-model="userData.username" placeholder="username">
+                <input type="email" class="form-control input-lg text-center" ng-model="userData.mail" placeholder="Email">
+                <input type="password" class="form-control input-lg text-center" ng-model="userData.password" placeholder="password">
+            </div>
+
+            <!-- createToDo() WILL CREATE NEW TODOS -->
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="register()">Register</button>
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="logIn()">Login</button>
+            <p>
+                {{ token }}
+                {{ authentified }}
+            </p>
+        </form>
         <a href="devices.html">list of devices</a>
     </div>
 
 </body>
+
 </html>
