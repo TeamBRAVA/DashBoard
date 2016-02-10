@@ -1,0 +1,53 @@
+[
+  {
+    "_id": "56b5e4fc7a80b13b2149b900",
+    "owner": null,
+    "creationDate": 1454761212218,
+    "token": null,
+    "expirationdate": null,
+    "certificate": {
+      "path": "/home/red/API_SERVER/CERTS/DEVICES/1454761212106-e74c558716.pem",
+      "passphrase": "0F9BCA6E5B",
+      "fingerprint": "B5:2A:D2:4F:00:53:95:82:9A:0B:A9:38:3C:EF:A1:31:E8:28:E1:FB"
+    },
+    "installedversionRED": null,
+    "softwarelist": [],
+    "data": [
+      {
+        "datatype": "temp",
+        "value": 16,
+        "date": "2016-02-10T12:23:22.708Z"
+      },
+      {
+        "datatype": "temp",
+        "value": 18,
+        "date": "2016-02-10T12:23:30.009Z"
+      },
+      {
+        "datatype": "temp",
+        "value": 20,
+        "date": "2016-02-10T12:23:35.709Z"
+      },
+      {
+        "datatype": "humidity",
+        "value": 70,
+        "date": "2016-02-10T12:25:32.642Z"
+      },
+      {
+        "datatype": "humidity",
+        "value": 80,
+        "date": "2016-02-10T12:25:39.558Z"
+      },
+      {
+        "datatype": "maths",
+        "value": "pi=3,1415",
+        "date": "2016-02-10T15:14:50.882Z"
+      },
+      {
+        "datatype": "maths",
+        "value": "tan=sin/cos",
+        "date": "2016-02-10T15:22:24.776Z"
+      }
+    ]
+  }
+]

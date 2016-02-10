@@ -5,10 +5,10 @@
 
 /* Controllers */
 
-var deviceApp = angular.module('deviceApp', []);
+var devicecatApp = angular.module('deviceApp', []);
 
 devicecatApp.controller('deviceListCtrl', ['$scope', '$http', function($scope, $http) {
-    $http.get('http://dev2.red-cloud.io/device/result').success(function(data) {
+    $http.get('device/device.json').success(function(data) {
         $scope.deviceData = data;
     });
 }]);
