@@ -1,5 +1,5 @@
 var redAPI = angular.module('redAPI', []);
-var url = "http://api.red.jankobox.fr";
+var url = "http://dev2.red-cloud.io";
 
 redAPI.controller('mainController', function ($scope, $http) {
     $scope.formLogin = {}
@@ -13,7 +13,7 @@ redAPI.controller('resultController', function ($scope, $http) {
     $scope.formData = {};
     
     // when landing on the page, get all devices and show them
-    $http.get(url + "/result")
+    $http.get(url + "/device/result")
         .success(function (data) {
             $scope.devices = data;
             console.log(data);
@@ -25,7 +25,7 @@ redAPI.controller('resultController', function ($scope, $http) {
     $scope.addData = function () {
         $http.post(url + "/device", $scope.formData)
             .success(function () {
-                $http.get(url + '/result')
+                $http.get(url + "/device/result")
                     .success(function (data) {
                         $scope.devices = data;
                         console.log(data);

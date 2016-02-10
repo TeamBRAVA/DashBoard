@@ -20,6 +20,15 @@
 
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
-<body ng-controller="">
+<body ng-controller="deviceListCtrl">
+<p>Hey you !! </p>
+<ul class="deviceData">
+    <li ng-repeat="data in deviceData">
+        <span>{{devic._id}}</span>
+        <p>{{device.owner}}</p>
+        <p>{{device.fingerprint}}</p>
+    </li>
+</ul>
+
 </body>
 </html>
