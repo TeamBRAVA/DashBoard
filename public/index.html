@@ -29,12 +29,12 @@
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
 
-<body>
+<body data-ng-controller="authController">
     <div class="container">
 
         <h1>yo t'es sur l'index et ca marche</h1>
 
-        <form data-ng-controller="authController">
+        <form>
             <div class="form-group">
 
                 <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
@@ -51,6 +51,9 @@
                 {{ authentified }}
             </p>
         </form>
+        
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="all()">all devices</button>
+        {{result}}
         <a href="devices.html">list of devices</a>
     </div>
 
