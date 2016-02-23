@@ -4,11 +4,13 @@
 'use strict';
 
 /* Controllers */
-
+var url = "http://dev2.red-cloud.io";
 var devicecatApp = angular.module('deviceApp', []);
 
 devicecatApp.controller('deviceListCtrl', ['$scope', '$http', function($scope, $http) {
-    $http.get('device/device.json').success(function(data) {
+    $http.get(url+"/device/result").success(function(data) {
         $scope.deviceData = data;
+        console.log(data);
     });
 }]);
+
