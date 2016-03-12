@@ -1,0 +1,12 @@
+{
+  "apps" : [{
+    // Application #1
+    "name"        : "DASHBOARD",
+    "script"      : "bin/www",
+    "args"        : [],
+    "watch"       : true,
+    "ignore_watch": ["node_modules"],
+    "merge_logs"  : true,
+    "cwd"         : "/home/red/Dashboard/"
+  }]
+}

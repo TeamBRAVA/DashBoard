@@ -39,10 +39,9 @@ redControllers.controller('authController', ['$scope', '$location', '$http', '$c
 
     $scope.all = function () {
         var token = $cookies.get('token');
-        console.log(token);
         $http({
             method: 'GET',
-            url: url + '/user/device/result',
+            url: url + '/user/device/all',
             headers: {
                 'Authorization': 'Bearer ' + token,
             }
