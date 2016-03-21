@@ -7,6 +7,6 @@
     "watch"       : true,
     "ignore_watch": ["node_modules"],
     "merge_logs"  : true,
-    "cwd"         : "/home/red/Dashboard/"
+    "cwd"         : "/home/red/DashBoard/"
   }]
 }
