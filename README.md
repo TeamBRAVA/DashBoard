@@ -1,10 +1,9 @@
-# angularPart
+# DashBoard of RED
 
-First of all, you need the API server to be installed and running
-To do so go check ProjectX repositery.
+This git contains only static files using Angular
+You just have to clone th project and open app/index.html
 
-To start the server: 
-- open node command prompt
-- go to project folder
-- type : node bin/www
-- DONE ! you server is on localhost:8080
+By default, it will use RED API located on: https://user.red-cloud.io
+
+if you want to reference your own version of the api, go inside: 
+app/js/controllers.js and change the value of url.
