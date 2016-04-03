@@ -4,12 +4,13 @@
 
 var redApp = angular.module('redApp', [
   'ngRoute',
+  'redServices',
   'ngCookies',
   'ngFileUpload',
   //'redAnimations',
-  'redControllers'//,
+  'redControllers'
   //'redFilters',
-  //'redServices'
+  
 ]);
 
 redApp.config(['$routeProvider',

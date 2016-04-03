@@ -2,11 +2,22 @@
 
 /* Services */
 
-var redServices = angular.module('redServices', ['ngResource']);
+var redServices = angular.module('redServices', []);
 
-/*phonecatServices.factory('Phone', ['$resource',
-  function($resource){
-    return $resource('phones/:phoneId.json', {}, {
-      query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
-    });
-  }]);*/
+redServices.factory('Auth', ['$cookies' , function($cookies) {
+  var auth = {};
+  
+  auth.getCookie = function(){
+      return $cookies.get('token');
+  }
+  
+  auth.setCookie = function(value){
+      $cookies.put('token', value);
+  }
+  
+  auth.removeCookie = function(){
+      $cookies.remove('token');
+  }
+
+  return auth;
+}]);
