@@ -1,0 +1,39 @@
+<!-- Page Content -->
+<div id="page-content-wrapper" ng-controller="DeviceDetailsCtrl">
+    <div id="toolbar">
+        <div class="clearfix"></div>
+    </div>
+
+    <div>
+        <h2>Name</h2>
+        <p>Creation Date : {{details.creationDate | date:'fullDate'}}</p>
+        <p>installed version or RED: {{details.installedversionRED == null ? 'none' : details.installedversionRED}}</p>
+        <p> list of software installed:</p>
+        <div ng-repeat="software in details.softwarelist">
+            <a href="#/software/{{software}}">{{software}}</a>
+        </div>
+        <p>users : {{details.users}}</p>
+        <p>permissions : {{details.permissions}}</p>
+
+        <div ng-repeat="(key, arr) in data">
+            <h2>{{key}}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>date</th>
+                        <th>{{key}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="obj in arr">
+                        <td>{{obj.date | date:'fullDate'}}</td>
+                        <td>{{obj.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<!-- /#page-content-wrapper -->

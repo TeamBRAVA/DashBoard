@@ -33,6 +33,7 @@ redControllers.controller('userCtrl', ['$scope', '$location', '$http', '$cookies
                     $scope.user = data;
                 }).error( function (err) {
                     console.log(err);
+                    $location.path('/login');
                 });
         } else {
             $location.path('/login');
@@ -49,18 +50,27 @@ redControllers.controller('DeviceDetailsCtrl',
     $scope.token = $cookies.get('token');
     $scope.id = $routeParams.id;
 
-    $scope.handle = {}; // create a new data model
-
     $http({ method: 'GET',
             url: url + '/user/device/summary/'+$scope.id,
             headers: {
                 'Authorization': 'Bearer ' + $scope.token
             }
         }).success( function (data) {
-            console.log(data);
+            $scope.details = data;
         }).error( function (err) {
             console.log(err);
         });
+    $http({ method: 'GET',
+            url: url + '/user/device/'+$scope.id,
+            headers: {
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        }).success( function (data) {
+            $scope.data = data.data;
+        }).error( function (err) {
+            console.log(err);
+        });    
+    
 
 }]);
 
