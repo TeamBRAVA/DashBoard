@@ -4,7 +4,7 @@
 
 var redControllers = angular.module('redControllers', []);
 
-var url = 'https://user.red-cloud.io';
+var url = 'http://localhost:3000';
 
 redControllers.controller('HeaderCtrl', ['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
     $scope.$on('$locationChangeSuccess', function() {
@@ -19,6 +19,7 @@ redControllers.controller('userCtrl', ['$scope', '$location', '$http', '$cookies
     $scope.$on('$locationChangeSuccess', function() {
 
         $scope.token = $cookies.get('token');
+        console.log($scope.token);
         $scope.user = {username : 'Bienvenue' };
         // User already authenticated
         if( $scope.token != undefined) {
@@ -29,107 +30,15 @@ redControllers.controller('userCtrl', ['$scope', '$location', '$http', '$cookies
                         'Authorization': 'Bearer ' + $scope.token
                     }
                 }).success( function (data) {
-                    console.log(data);
                     $scope.user = data;
                 }).error( function (err) {
                     console.log(err);
                 });
+        } else {
+            $location.path('/login');
         }
+
     });
-}]);
-
-
-
-
-
-
-/**
- *  Software related controllers
- *
- */ 
-
-
-// Controller for the upload of softwares
-redControllers.controller('SoftwareUpload', ['$scope', '$cookies','Upload', '$window', function($scope, $cookies, Upload, $window) {
-    
-    $scope.token = $cookies.get('token');
-
-    var vm = this;
-    vm.submit = function(){ //function to call on form submit
-        if (vm.form.file.$valid && vm.file) { //check if from is valid
-            vm.upload(vm.file); //call upload function
-        }
-    }
-    vm.upload = function (file) {
-        Upload.upload({
-            url: url + '/user/software/add', //webAPI exposed to upload the file
-            headers: {
-                'Authorization': 'Bearer ' + $scope.token,
-            },
-            data:{
-                file:file,
-                name: vm.name,
-                version: vm.version,
-                description: vm.description
-            } //pass file as data, should be user ng-model
-        }).then(function (resp) { //upload function returns a promise
-            console.log(resp);
-            if(resp.status == 200){ 
-                // Success for upload
-            } else {
-                $window.alert('an error occured');
-            }
-        }, function (resp) { //catch error
-            $window.alert('Error status: ' + resp.status);
-        }, function (evt) {
-            // Event
-        });
-    };
-}]);
-
-redControllers.controller('SoftwareContainerCtrl', 
-    ['$scope', '$location', '$http', '$cookies', function ($scope, $location, $http, $cookies) {
-    
-    /*$http({ method: 'GET',
-            url: url + '/user/software/summary/'+$scope.device,
-            headers: {
-                'Authorization': 'Bearer ' + $scope.token,
-            }
-        }).success( function (data) {
-            $scope.summary = data;
-        }).error( function (err) {
-            console.log(err);
-        });*/
-
-}]);
-
-redControllers.controller('SoftwareCtrl', 
-    ['$scope', '$routeParams', '$location', '$http', '$cookies', function ($scope, $routeParams, $location, $http, $cookies) {
-
-    $scope.token = $cookies.get('token');
-
-    $http({ method: 'GET',
-            url: url + '/user/software/list',
-            headers: {
-                'Authorization': 'Bearer ' + $scope.token
-            }
-    }).success( function (data) {
-        $scope.softwares = data;
-    }).error( function (err) {
-        console.log(err);
-    });
-
-    /*$http({ method: 'GET',
-            url: url + '/user/software/list/all',
-            headers: {
-                'Authorization': 'Bearer ' + $scope.token
-            }
-    }).success( function (data) {
-        
-    }).error( function (err) {
-        console.log(err);
-    });*/
-
 }]);
 
 
@@ -235,7 +144,7 @@ redControllers.controller('authControler', ['$scope', '$location', '$http', '$co
         $http.post(url + '/register', $scope.userData)
             .success(function (token) {
                 //redirect to routes
-                $cookies.put('token', token.token);
+                $cookies.put('token', token.token, {domain: '.red-cloud.io', path: '/'});
                 $location.path('/device');
             })
             .error(function (err) {
@@ -244,8 +153,8 @@ redControllers.controller('authControler', ['$scope', '$location', '$http', '$co
     }
 
     $scope.logout = function () {
-       $cookies.remove('token');  // Remove the token to logout the user
-       $location.path('/login');
+        $cookies.remove('token');//, '', {domain: '.red-cloud.io', path: '/'});
+        $location.path('/login');
     }
 
 }]);

@@ -3,7 +3,7 @@
 
     <div class="red-software"></div>
 	<div id="toolbar" style="margin-bottom: 0;">
-		<a href="#" class="pull-right" style="font-family: 'Moon'; color: white; font-size: 16px; margin-right: 20px" onclick="jQuery('.add-software').toggleClass('visible');return false;">
+		<a href="#" class="pull-right" style="font-family: 'Moon'; color: white; font-size: 16px; margin-right: 20px" onclick="jQuery('.add-software').toggleClass('visible');jQuery('#soft-submit').html('Add Software');jQuery('.form-control').val('');return false;">
 			<i class="fa fa-plus"></i>&nbsp;Add Software
 		</a>
 		<div class="clearfix" style="margin-bottom: 10px"></div>
@@ -16,13 +16,13 @@
 		    <h2 style="text-align: center; font-family: 'Moon'">Add a software update to your cloud !</h2>
 		    <div class="row">
 			<div class="col-md-6">
-	        <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'*'" accept="*" ngf-max-size="100MB" />
-	        <input type="text" class="form-control input-lg text-center" ng-model="up.name" />
-	        <input type="text" class="form-control input-lg text-center" ng-model="up.version" />
+	        <input type="file" ngf-select ng-model="up.file" name="file" class="form-control" ngf-pattern="'*'" accept="*" ngf-max-size="100MB" />
+	        <input type="text" class="form-control input-lg text-center" id="soft-name" ng-model="up.name" placeholder="Name"/>
+	        <input type="text" class="form-control input-lg text-center" id="soft-version" ng-model="up.version" placeholder="Version"/>
 			</div>
 			<div class="col-md-6">
-	        <textarea type="text" class="form-control input-lg text-center" ng-model="up.description"></textarea>
-	        <button type="submit" class="btn btn-white btn-lg" ng-click="up.submit()">Add Software</button>
+	        <textarea  type="text" class="form-control input-lg text-center" id="soft-description" ng-model="up.description" placeholder="Software description"></textarea>
+	        <button type="submit" class="btn btn-white btn-lg" id="soft-submit" ng-click="up.submit()">Add Software</button>
 			</div>
 		    </div>
 	    </form>
