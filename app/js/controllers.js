@@ -4,7 +4,7 @@
 
 var redControllers = angular.module('redControllers', []);
 
-var url = 'http://localhost:3000';
+var url = 'https://user.red-cloud.io';
 
 redControllers.controller('HeaderCtrl', ['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
     $scope.$on('$locationChangeSuccess', function() {
