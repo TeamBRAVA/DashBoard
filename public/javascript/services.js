@@ -1,1 +1,0 @@
-var redServices = angular.module('redServices', []);

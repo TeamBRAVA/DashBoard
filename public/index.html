@@ -1,64 +1,55 @@
-<!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en" ng-app="redApp">
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="redApp">
+  <head>
 
-<head>
-    <!-- META -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Optimize mobile viewport -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
     <title>RED</title>
+    <link rel="shortcut icon" href="img/cloudicon.png" />
 
-    <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <!-- load bootstrap -->
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-    <!-- SPELLS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-cookies.js"></script>
-    
-    <!-- load angular -->
-    <script src="../javascript/app.js"></script>
-    <script src="../javascript/controllers.js"></script>
-    <script src="../javascript/services.js"></script>
-    
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
 
-</head>
-<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar2.css" rel="stylesheet">
 
-<body data-ng-controller="authController">
-    <div class="container">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-        <h1>yo t'es sur l'index et ca marche</h1>
+  </head>
 
-        <form>
-            <div class="form-group">
-
-                <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                <input type="text" class="form-control input-lg text-center" ng-model="userData.username" placeholder="username">
-                <input type="email" class="form-control input-lg text-center" ng-model="userData.mail" placeholder="Email">
-                <input type="password" class="form-control input-lg text-center" ng-model="userData.password" placeholder="password">
-            </div>
-
-            <!-- createToDo() WILL CREATE NEW TODOS -->
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="register()">Register</button>
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="logIn()">Login</button>
-            <p>
-                {{ token }}
-                {{ authentified }}
-            </p>
-        </form>
-        
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="all()">all devices</button>
-        {{result}}
-        <a href="devices.html">list of devices</a>
+  <body>
+    <!-- Sidebar -->
+    <div ng-controller="HeaderCtrl">
+      <div ng-include="navbarUrl"></div>
+      <div ng-include="headerUrl" ng-controller="userCtrl"></div>
     </div>
 
-</body>
+
+    <div ng-view></div>
+
+  </body>
 
 </html>

@@ -1,0 +1,42 @@
+<!-- Page Content -->
+<div id="page-content-wrapper">
+
+   <!-- <div class="form-group">
+        <!-- BIND THIS VALUE TO formData.text IN ANGULAR --
+        <input type="number" min="1" max="100" step="1" class="form-control input-lg text-center" ng-model="handle.number" />
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="create()">Create</button>
+    </div>-->
+    	<div id="toolbar">
+	    	<div class="input-group pull-right">
+		    	<div class="group-icon"><i class="fa fa-search"></i></div>
+				<input type="text" placeholder="Search">
+	    	</div>
+	    	<div class="input-group pull-right">
+		    	<form ng-submit="create()">
+		    	<div class="group-icon"><i class="fa fa-plus"></i></div>
+				<input type="number" placeholder="Add devices">
+		    	</form>
+	    	</div>
+	    	<div class="clearfix"></div>
+    	</div>
+
+        <a ng-repeat="device in devices" ng-controller="DeviceContainerCtrl" href="#/device/{{device}}">
+            <div class="device-container">
+                <div class="device-info row">
+	                <div class="col-xs-4">
+		                <img src="http://www.robotshop.com/media/catalog/product/cache/15/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/p/sphero-star-wars-bb-8-bluetooth-smartphone-controlled-robotic-ball.jpg" class="img-responsive">
+	                </div>
+	                <div class="col-xs-8">
+	                    <span class="nom">Nom{{summary.name}}</span>
+	                    <span class="description">Description{{summary.description}}</span>
+	                    <span class="date">Creation Date : {{summary.creationDate | date:'fullDate'}}</span>
+	                </div>
+                </div>
+                <div class="device-permissions"><strong>{{summary.permissions}}</strong>Permissions</div>
+                <div class="device-users"><strong>{{summary.permissions}}</strong>Users</div>
+            </div>
+        </a>
+    </ul>
+
+</div>
+<!-- /#page-content-wrapper -->

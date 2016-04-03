@@ -1,0 +1,64 @@
+<!-- Page Content -->
+<div id="page-content-wrapper">
+
+    <div class="red-software"></div>
+	<div id="toolbar" style="margin-bottom: 0;">
+		<a href="#" class="pull-right" style="font-family: 'Moon'; color: white; font-size: 16px; margin-right: 20px" onclick="jQuery('.add-software').toggleClass('visible');return false;">
+			<i class="fa fa-plus"></i>&nbsp;Add Software
+		</a>
+		<div class="clearfix" style="margin-bottom: 10px"></div>
+	</div>
+	
+	
+    <div class="form-group add-software">
+    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+	    <form  ng-controller="SoftwareUpload as up" name="up.form">
+		    <h2 style="text-align: center; font-family: 'Moon'">Add a software update to your cloud !</h2>
+		    <div class="row">
+			<div class="col-md-6">
+	        <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'*'" accept="*" ngf-max-size="100MB" />
+	        <input type="text" class="form-control input-lg text-center" ng-model="up.name" />
+	        <input type="text" class="form-control input-lg text-center" ng-model="up.version" />
+			</div>
+			<div class="col-md-6">
+	        <textarea type="text" class="form-control input-lg text-center" ng-model="up.description"></textarea>
+	        <button type="submit" class="btn btn-white btn-lg" ng-click="up.submit()">Add Software</button>
+			</div>
+		    </div>
+	    </form>
+	</div>
+	
+	
+    <div class="software" ng-repeat="software in softwares" ng-controller="SoftwareContainerCtrl">
+    	<div class="pull-left nom">
+	    	{{software.name}}
+    	</div>
+    	<button class="pull-right" ng-click="update()">Update Now</button>
+    	<div class="clearfix"></div>
+    	<div class="row">
+    	<div class="col-sm-2" style="text-align: center; font-size: 15px;">
+	    	<i class="fa fa-3x fa-pied-piper-alt" style="border-radius: 50%; border-width: 3px;"></i><br />
+	    	{{software.version}}
+    	</div>
+    	<div class="col-sm-10 description">
+	    	{{software.description}}
+	    </div>
+    	</div>
+	    <div style="margin-top: 9px; height: 1px; width: 100%;"></div>
+    </div>
+
+        <a ng-repeat="device in devices" ng-controller="DeviceContainerCtrl" href="#/device/{{device}}">
+            <div class="device-container" >
+                <div>
+                    <div>{{summary.name}}</div>
+                    <div>{{summary.description}}</div>
+                    <div>Creation Date : {{summary.creationDate | date:'fullDate'}}</div>
+                </div>
+                    <div>Permissions : {{summary.permissions}}</div>
+                    <div>Users : {{summary.users}}</div>
+            </div>
+        </a>
+    </ul>
+
+</div>
+<!-- /#page-content-wrapper -->
