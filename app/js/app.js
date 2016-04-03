@@ -27,6 +27,10 @@ redApp.config(['$routeProvider',
         templateUrl: 'partials/software.html',
         controller: 'SoftwareCtrl'
       }).
+      when('/software/:id', {
+        templateUrl: 'partials/software-details.html',
+        controller: 'SoftwareDetailsCtrl'
+      }).
       when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'authControler'

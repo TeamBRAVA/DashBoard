@@ -1,0 +1,15 @@
+<!-- Page Content -->
+<div id="page-content-wrapper" ng-controller="SoftwareDetailsCtrl">
+    <div id="toolbar">
+        <div class="clearfix"></div>
+    </div>
+
+    <div>
+        <h2>{{details.name}}</h2>
+        <p>{{details.description}}</p>
+        <p> Version : {{details.version}}</p>
+        <p>{{details.obsolete == true ? 'WARNING, the software is obsolete' : ''}}
+    </div>
+
+</div>
+<!-- /#page-content-wrapper -->

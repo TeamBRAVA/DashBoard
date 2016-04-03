@@ -88,6 +88,25 @@ redControllers.controller('SoftwareUpload', ['$scope', '$cookies','Upload', '$wi
     };
 }]);
 
+redControllers.controller('SoftwareDetailsCtrl', 
+    ['$scope', '$routeParams', '$location', '$http', '$cookies', function ($scope, $routeParams, $location, $http, $cookies) { 
+    
+
+    $scope.token = $cookies.get('token');
+    $scope.id = $routeParams.id;
+
+    $http({ method: 'GET',
+            url: url + '/user/software/'+$scope.id,
+            headers: {
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        }).success( function (data) {
+            $scope.details = data;
+        }).error( function (err) {
+            console.log(err);
+        });   
+}]);
+
 redControllers.controller('SoftwareContainerCtrl', 
     ['$scope', '$location', '$http', '$cookies', function ($scope, $location, $http, $cookies) {
     

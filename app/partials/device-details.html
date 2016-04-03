@@ -9,8 +9,8 @@
         <p>Creation Date : {{details.creationDate | date:'fullDate'}}</p>
         <p>installed version or RED: {{details.installedversionRED == null ? 'none' : details.installedversionRED}}</p>
         <p> list of software installed:</p>
-        <div ng-repeat="soft in details.softwarelist">
-            <p>{{soft}}</p>
+        <div ng-repeat="software in details.softwarelist">
+            <a href="#/software/{{software}}">{{software}}</a>
         </div>
         <p>users : {{details.users}}</p>
         <p>permissions : {{details.permissions}}</p>
