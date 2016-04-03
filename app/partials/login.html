@@ -1,18 +1,22 @@
 <!-- Page Content -->
 <div id="page-content-wrapper">
-
   <form id="loginform" class="no-padding">
+    <p id="welcome">Welcome to RED.</p>
     <div class="form-group">
         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-        <input type="text" class="form-control input-lg text-center" ng-model="userData.username" placeholder="username">
-        <input type="password" class="form-control input-lg text-center" ng-model="userData.password" placeholder="password">
+        <input id="username" type="text" class="form-control input-lg text-center" ng-model="userData.username" placeholder="username"><br>
+        <input id="password" type="password" class="form-control input-lg text-center" ng-model="userData.password" placeholder="password">
     </div>
 
     <!-- createToDo() WILL CREATE NEW TODOS -->
     <div class="center-block">
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="logIn()">Login</button>
+    <!--button type="submit" class="btn btn-primary btn-lg" ng-click="register()">Register</button-->
+    <a id="register" href="#/register" title="Register" type="submit" >Create a new account</a><br><br>
+    <button type="submit" class="btn btn-primary btn-lg" ng-click="logIn()">Login</button>
     </div>
   </form>
 
+
+
 </div>
-<!-- /#page-content-wrapper -->
+<!-- /#page-content-wrapper -->  
