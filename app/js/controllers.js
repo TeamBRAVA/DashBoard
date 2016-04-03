@@ -4,22 +4,23 @@
 
 var redControllers = angular.module('redControllers', []);
 
-var url = 'http://localhost:3000';
+var url = 'https://user.red-cloud.io';
 
-redControllers.controller('HeaderCtrl', ['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
+redControllers.controller('HeaderCtrl', ['$scope', '$location', 'Auth', function ($scope, $location, Auth) {
     $scope.$on('$locationChangeSuccess', function() {
         //EDIT: cope with other path
-        $scope.navbarUrl = ($cookies.get('token') != undefined) ? 'partials/navbar-authenticated.html' : 'partials/navbar-anonym.html';
-        $scope.headerUrl = ($cookies.get('token') != undefined) ? 'partials/header-authenticated.html' : 'partials/header-anonym.html';
+        $scope.navbarUrl = (Auth.getCookie() != undefined) ? 'partials/navbar-authenticated.html' : 'partials/navbar-anonym.html';
+        $scope.headerUrl = (Auth.getCookie() != undefined) ? 'partials/header-authenticated.html' : 'partials/header-anonym.html';
     });
 }]);
 
 // Get the user informations given its session token
-redControllers.controller('userCtrl', ['$scope', '$location', '$http', '$cookies', function ($scope, $location, $http, $cookies) { 
+redControllers.controller('userCtrl', 
+    ['$scope', '$location', '$http', 'Auth', function ($scope, $location, $http, Auth) { 
+    
     $scope.$on('$locationChangeSuccess', function() {
 
-        $scope.token = $cookies.get('token');
-        console.log($scope.token);
+        $scope.token = Auth.getCookie();
         $scope.user = {username : 'Bienvenue' };
         // User already authenticated
         if( $scope.token != undefined) {
@@ -44,10 +45,10 @@ redControllers.controller('userCtrl', ['$scope', '$location', '$http', '$cookies
 
 
 redControllers.controller('DeviceDetailsCtrl', 
-    ['$scope', '$routeParams', '$location', '$http', '$cookies', function ($scope, $routeParams, $location, $http, $cookies) { 
+    ['$scope', '$routeParams', '$location', '$http', 'Auth', function ($scope, $routeParams, $location, $http, Auth) { 
     
 
-    $scope.token = $cookies.get('token');
+    $scope.token = Auth.getCookie();
     $scope.id = $routeParams.id;
 
     $http({ method: 'GET',
@@ -76,7 +77,7 @@ redControllers.controller('DeviceDetailsCtrl',
 
 
 redControllers.controller('DeviceContainerCtrl', 
-    ['$scope', '$location', '$http', '$cookies', function ($scope, $location, $http, $cookies) {
+    ['$scope', '$location', '$http', 'Auth', function ($scope, $location, $http, Auth) {
     
     $http({ method: 'GET',
             url: url + '/user/device/summary/'+$scope.device,
@@ -92,9 +93,10 @@ redControllers.controller('DeviceContainerCtrl',
 }]);
 
 
-redControllers.controller('DeviceCtrl', ['$scope', '$location', '$http', '$cookies', function ($scope, $location, $http, $cookies) { 
+redControllers.controller('DeviceCtrl', 
+    ['$scope', '$location', '$http', 'Auth', function ($scope, $location, $http, Auth) { 
     
-    $scope.token = $cookies.get('token');
+    $scope.token = Auth.getCookie();
     $scope.handle = {}; // create a new data model
 
     $http({ method: 'GET',
@@ -104,7 +106,6 @@ redControllers.controller('DeviceCtrl', ['$scope', '$location', '$http', '$cooki
             }
         }).success( function (data) {
             $scope.devices = data.list;
-            console.log(data.list);
         }).error( function (err) {
             console.log(err);
         });
@@ -127,7 +128,9 @@ redControllers.controller('DeviceCtrl', ['$scope', '$location', '$http', '$cooki
 
 
 
-redControllers.controller('authControler', ['$scope', '$location', '$http', '$cookies', function ($scope, $location, $http, $cookies) {
+redControllers.controller('authControler', 
+    ['$scope', '$location', '$http', 'Auth', function ($scope, $location, $http, Auth) {
+    
     $scope.userData = {};
     $scope.authentified = '';
 
@@ -137,8 +140,8 @@ redControllers.controller('authControler', ['$scope', '$location', '$http', '$co
                 //redirect to route
                 $scope.authentified = "yes !";
                 $scope.token = result;
-
-                $cookies.put('token', result.token);
+                
+                Auth.setCookie(result.token);
                 $location.path('/device');
             })
             .error(function (err) {
@@ -154,7 +157,7 @@ redControllers.controller('authControler', ['$scope', '$location', '$http', '$co
         $http.post(url + '/register', $scope.userData)
             .success(function (token) {
                 //redirect to routes
-                $cookies.put('token', token.token, {domain: '.red-cloud.io', path: '/'});
+                Auth.setCookie(result.token);
                 $location.path('/device');
             })
             .error(function (err) {
@@ -162,9 +165,110 @@ redControllers.controller('authControler', ['$scope', '$location', '$http', '$co
             });
     }
 
-    $scope.logout = function () {
-        $cookies.remove('token');//, '', {domain: '.red-cloud.io', path: '/'});
+    $scope.logOut = function () {
+        Auth.removeCookie();     
         $location.path('/login');
     }
+
+}]);
+
+redControllers.controller('SoftwareUpload', 
+    ['$scope', '$cookies','Upload', '$window','$route', 'Auth', function($scope, $cookies, Upload, $window, $route, Auth) {
+    
+    $scope.token = Auth.getCookie();
+
+    var vm = this;
+    vm.submit = function(){ //function to call on form submit
+        if (vm.form.file.$valid && vm.file) { //check if from is valid
+            vm.upload(vm.file); //call upload function
+        }
+    }
+    vm.upload = function (file) {
+        Upload.upload({
+            url: url + '/user/software/add', //webAPI exposed to upload the file
+            headers: {
+                'Authorization': 'Bearer ' + $scope.token,
+            },
+            data:{
+                file:file,
+                name: vm.name,
+                version: vm.version,
+                description: vm.description
+            } //pass file as data, should be user ng-model
+        }).then(function (resp) { //upload function returns a promise
+            console.log(resp);
+            if(resp.status == 200){ 
+                $route.reload();
+            } else {
+                $window.alert('an error occured');
+            }
+        }, function (resp) { //catch error
+            $window.alert('Error status: ' + resp.status);
+        }, function (evt) {
+            // Event
+        });
+    };
+}]);
+
+redControllers.controller('SoftwareDetailsCtrl', 
+    ['$scope', '$routeParams', '$location', '$http', '$cookies', 'Auth', function ($scope, $routeParams, $location, $http, $cookies, Auth) { 
+    
+
+    $scope.token = Auth.getCookie();
+    $scope.id = $routeParams.id;
+
+    $http({ method: 'GET',
+            url: url + '/user/software/'+$scope.id,
+            headers: {
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        }).success( function (data) {
+            $scope.details = data;
+        }).error( function (err) {
+            console.log(err);
+        });   
+}]);
+
+redControllers.controller('SoftwareContainerCtrl', 
+    ['$scope', '$location', '$http', '$cookies', 'Upload', function ($scope, $location, $http, $cookies, Upload) {
+
+    $scope.update = function() {
+
+        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+
+        if(!jQuery('.add-software').hasClass('visible'))
+            jQuery('.add-software').toggleClass('visible');
+
+        jQuery('#soft-name').val($scope.software.name);
+        jQuery('#soft-description').val($scope.software.description);        
+        jQuery('#soft-submit').html('Update Software');
+
+        //format version
+        var version = $scope.software.version;
+        version = version.split('.');
+        var inc = version[version.length-1];
+        inc = parseInt(inc); inc++;
+        version[version.length-1] = inc.toString();
+        jQuery('#soft-version').val(version.join('.'));
+
+    }
+
+}]);
+
+redControllers.controller('SoftwareCtrl', 
+    ['$scope', '$routeParams', '$location', '$http', '$cookies', 'Auth',  function ($scope, $routeParams, $location, $http, $cookies, Auth) {
+
+    $scope.token = Auth.getCookie();
+
+    $http({ method: 'GET',
+            url: url + '/user/software/list',
+            headers: {
+                'Authorization': 'Bearer ' + $scope.token
+            }
+    }).success( function (data) {
+        $scope.softwares = data;
+    }).error( function (err) {
+        console.log(err);
+    });
 
 }]);
