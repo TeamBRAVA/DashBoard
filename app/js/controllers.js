@@ -20,7 +20,7 @@ redControllers.controller('userCtrl', ['$scope', '$location', '$http', '$cookies
 
         $scope.token = $cookies.get('token');
         console.log($scope.token);
-        $scope.user = {username : 'Bienvenue' };
+        $scope.user = {username : 'Bienvenue'};
         // User already authenticated
         if( $scope.token != undefined) {
             // To Do : Get the user infos
