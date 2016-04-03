@@ -140,7 +140,7 @@ redControllers.controller('DeviceDetailsCtrl',
     $scope.token = $cookies.get('token');
     $scope.id = $routeParams.id;
 
-    $scope.handle = {}; // create a new data model
+    $scope.details = {}; // create a new data model
 
     $http({ method: 'GET',
             url: url + '/user/device/summary/'+$scope.id,
@@ -149,6 +149,7 @@ redControllers.controller('DeviceDetailsCtrl',
             }
         }).success( function (data) {
             console.log(data);
+            $scope.details = data;
         }).error( function (err) {
             console.log(err);
         });
