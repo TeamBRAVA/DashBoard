@@ -18,15 +18,15 @@ body {
 	max-width: 100%;
 }
 input {
-	color: black !important;
+	color: black;
 }
 button {
-	border-radius: 0 4px 0 4px !important;
-	background: #e50041 !important;
-	border-color: #ff1058 !important;
+	border-radius: 0 4px 0 4px ;
+	background: #e50041;
+	border-color: #ff1058;
 }
 button:hover {
-	background: #960033 !important;
+	background: #960033;
 }
 #logo {
 	margin-top: 50px;
@@ -51,7 +51,7 @@ button:hover {
     z-index: 900;
     top: 0;
     margin-left: 290px;
-    margin-bottom: 0;
+    margin-bottom: 95px;
     padding: 20px 50px;
     width: calc(100% - 290px);
     height: 100px;
@@ -71,9 +71,7 @@ button:hover {
 .no-padding {
 	padding: 0;
 }
-#page-content-wrapper .content {
-    padding: 0 50px;
-}
+
 
 /* Sidebar Styles */
 #sidebar-nav {
@@ -167,11 +165,12 @@ form#searchform input[type=text] {
 	width: 100%;
     background: white !important;
 }
-#page-content-wrapper input:not([type=submit])
+#page-content-wrapper input:not([type=submit]),
+#page-content-wrapper textarea:not([type=submit])
 {
-	width: 20%;
+	width: 100%;
 	display: block;
-	margin: 0 auto;
+	margin: 2px auto;
 	text-align: left;
 	font-size: 15px;
 	max-width: 300px;
@@ -183,6 +182,10 @@ form#searchform input[type=text] {
 	-o-box-shadow: 2px 2px 4px 0.5px #dddddd;
 	box-shadow: 2px 2px 4px 0.5px #dddddd;
 	padding-left:40px;
+}
+#page-content-wrapper textarea:not([type="submit"]) {
+	max-width: none;
+	margin-bottom: 5px;
 }
 
 #page-content-wrapper input#username:not([type=submit]){
@@ -201,9 +204,6 @@ form#searchform input[type=text] {
 	background-size: 30px 25px;
 }
 
-#page-content-wrapper input:not([type=submit]):focus {
-	background: #ccc;
-}
 .center-block {
 	margin: 0 auto;
 	display: block;
@@ -388,18 +388,546 @@ form#searchform input[type=text] {
 }
 .add-software.visible {
 	opacity: 1;
-	height: 205px;
+	height: 220px;
 	filter: blur(0px);
 	-webkit-filter: blur(0px);
 	-moz-filter: blur(0px);
 	-o-filter: blur(0px);
 	-ms-filter: blur(0px);
 }
-.add-software button {
+
+
+#page-content-wrapper .form-control:focus {
+    border-color: #e50041;
+}
+
+#page-content-wrapper div.pull-right input {
+	margin: 0;
+}
+
+
+.fileUpload:hover, .add-software button:hover {
+	color: white;
+	background: #e50041 none repeat scroll 0 0;
+}
+
+.fileUpload, .add-software button {
+	border: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    background: white none repeat scroll 0 0;
+    border-radius: 0 5px !important;
+    box-shadow: 2px 2px 4px 0.5px #dddddd;
+    display: block;
+    font-size: 15px;
+    margin: 0 auto;
+    padding-left: 40px;
+    text-align: left;
+    transition: background 0.4s ease 0s;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    color: #e50041;
+    margin-bottom: 1px;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+
+.header {
+	background: transparent;
+}
+#toolbar.high {
+	background: white none repeat scroll 0 0;
+	height: 100px;
+}
+
+.title {
+	font-family: 'Moon', sans-serif;
+}
+li h4.title {
+	color: #e50041;
+}
+
+#page-content-wrapper .content {
+    padding: 0;
+}
+.content ul {
+	list-style: outside none none;
+    padding: 0;
+}
+
+.content {
+	background: white none repeat scroll 0 0;
+	color: #4A4A4A;
+}
+
+.content table th {
+	text-transform: uppercase;
+}
+.content table td {
+	text-transform: uppercase;	
+}
+
+.content ul li {
+	margin-left: 50px;
+	padding: 20px 0px;
+}
+.content li i {
+	margin-right: 20px;
+}
+
+.table-condensed.unvisible {
+	height: 0;
+	opacity: 0;
+}
+.table-condensed {
+	margin-left: -50px;
+	width: calc(100% + 50px);
+	overflow: hidden;
+    transition: all 1s ease-in-out 0s;
+    opacity: 1;
+}
+.table-condensed .row div {
+	text-align: center;
+	padding: 5px;
+}
+.table-condensed .row {
+	border-bottom: 1px solid #ccc;
+}
+.table-condensed .row:first-child {
+	background: #ccc;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+/*----------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*FOR HOME PAGE*/
+
+#smallspace{
 	width: 100%;
-	background: white !important;
-	color: black;
+    background: white !important;
+    height: 1px !important;
 }
-.add-software button:hover {
-	background: #eee !important;
+
+#youriotpartner{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 100%;
+    background: #e50041 !important;
+    height:480px;
 }
+
+#youriotpartner p{
+    font-family: 'Moon', sans-serif;
+	font-size: 50pt;
+	text-align: center;
+	margin-top: 25px;
+}
+
+#youriotpartner h2{
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 16.5pt;
+	text-align: center;
+	margin-top: 10px;
+	letter-spacing: 1.5px;
+}
+
+#securityrecordingdata{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 100%;
+    background: white !important;
+    height:500px;
+}
+
+#descriptioncontainer{
+	width:1100px;
+    margin:0 auto;
+    position:relative;
+}
+#descriptioncontainer > div {
+	text-align: center;
+}
+#descriptioncontainer > div p {
+	margin-top: 10px;
+	text-align: justify;
+}
+
+#theteam{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 100%;
+    background: #e50041 !important;
+    height:700px;
+}
+
+#cloudlogo{
+	margin-left: 60px;
+	margin-top: -30px;
+}
+
+#threeicons{
+	display: block;
+    margin-left: auto;
+    margin-right: auto; 
+	margin-top: 40px;
+}
+
+#security{
+	width:20%;
+	background-color: white;
+	float: left;
+	margin-right: 70px;
+	margin-left: 120px;
+}
+
+#security p{
+	text-align: center;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 10pt;	
+	color: #e50041;
+	background-color: white;
+	letter-spacing: 0.8px;
+	font-weight: 600;
+}
+
+#recording{
+	width:20%;
+	background-color: white;
+	float: left;
+	margin-right: 60px;
+}
+
+#recording p{
+	text-align: center;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 10pt;	
+	color: #e50041;
+	background-color: white;
+	letter-spacing: 0.8px;
+	font-weight: 600;
+}
+
+#datavis{
+	width:20%;
+	background-color: white;
+	float: right;
+	margin-right: 190px;
+}
+
+#datavis p{
+	text-align: center;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 10pt;	
+	color: #e50041;
+	background-color: white;
+	letter-spacing: 0.8px;
+	font-weight: 600;
+}
+
+#theteam p{
+	font-family: 'Moon', sans-serif;
+	font-size: 40pt;
+	text-align: center;
+	margin-top: -10px;
+}
+
+#membercontainer{
+	width:1000px;
+    margin:0 auto;
+    position:relative;
+}
+
+#member1{
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	float: left;
+	margin-right: 170px;
+	margin-left: 180px;
+	margin-top: 25px;
+
+	background-image: url(../img/thomas.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover; 
+
+	border-radius: 5px 0 5px 0 !important;	
+	-moz-box-shadow: 2px 2px 4px 0.5px #000000;
+	-webkit-box-shadow: 2px 2px 4px 0.5px #000000;
+	-o-box-shadow: 2px 2px 4px 0.5px #000000;
+	box-shadow: 0.5px 0.5px 0.5px 0.5px #000000;
+}
+
+#member2{
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	float: left;
+	margin-right: 170px;
+	margin-top: 25px;
+
+	background-image: url(../img/pierre.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover; 
+
+	border-radius: 5px 0 5px 0 !important;	
+	-moz-box-shadow: 2px 2px 4px 0.5px #000000;
+	-webkit-box-shadow: 2px 2px 4px 0.5px #000000;
+	-o-box-shadow: 2px 2px 4px 0.5px #000000;
+	box-shadow: 0.5px 0.5px 0.5px 0.5px #000000;
+}
+
+#member3{
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	float: left;
+	margin-top: 25px;
+	margin-right: 170px;
+
+	background-image: url(../img/paul.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover; 
+
+	border-radius: 5px 0 5px 0 !important;	
+	-moz-box-shadow: 2px 2px 4px 0.5px #000000;
+	-webkit-box-shadow: 2px 2px 4px 0.5px #000000;
+	-o-box-shadow: 2px 2px 4px 0.5px #000000;
+	box-shadow: 0.5px 0.5px 0.5px 0.5px #000000;
+}
+
+#member4{
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	float: left;
+	margin-right: 170px;
+	margin-left: 180px;
+	margin-top: 60px;
+
+	background-image: url(../img/loic.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover; 
+
+	border-radius: 5px 0 5px 0 !important;	
+	-moz-box-shadow: 2px 2px 4px 0.5px #000000;
+	-webkit-box-shadow: 2px 2px 4px 0.5px #000000;
+	-o-box-shadow: 2px 2px 4px 0.5px #000000;
+	box-shadow: 0.5px 0.5px 0.5px 0.5px #000000;
+}
+
+#member5{
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	background-image: url(../img/valentin.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover; 
+	float: left;
+	margin-right: 170px;
+	margin-top: 60px;
+
+	border-radius: 5px 0 5px 0 !important;	
+	-moz-box-shadow: 2px 2px 4px 0.5px #000000;
+	-webkit-box-shadow: 2px 2px 4px 0.5px #000000;
+	-o-box-shadow: 2px 2px 4px 0.5px #000000;
+	box-shadow: 0.5px 0.5px 0.5px 0.5px #000000;
+}
+
+#member6{
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	float: left;
+	margin-top: 60px;
+	margin-right: 170px;
+
+	background-image: url(../img/emre.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover; 
+
+	border-radius: 5px 0 5px 0 !important;	
+	-moz-box-shadow: 2px 2px 4px 0.5px #000000;
+	-webkit-box-shadow: 2px 2px 4px 0.5px #000000;
+	-o-box-shadow: 2px 2px 4px 0.5px #000000;
+	box-shadow: 0.5px 0.5px 0.5px 0.5px #000000;
+}
+
+#memberdesc1{
+	width: 150px;
+	background-color: #e50041;
+	float: left;
+	margin-right: 120px;
+	margin-left: 155px;
+	margin-top: 10px;
+}
+
+#memberdesc2{
+	width: 150px;
+	background-color: #e50041;
+	float: left;
+	margin-right: 120px;
+	margin-top: 10px;
+}
+
+#memberdesc3{
+	width: 150px;
+	background-color: #e50041;
+	float: left;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+#memberdesc4{
+	width: 150px;
+	background-color: #e50041;
+	float: left;
+	margin-right: 120px;
+	margin-left: 155px;
+	margin-top: 10px;
+}
+
+#memberdesc5{
+	width: 150px;
+	background-color: #e50041;
+	float: left;
+	margin-right: 120px;
+	margin-top: 10px;
+}
+
+#memberdesc6{
+	width: 150px;
+	background-color: #e50041;
+	float: left;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+#memberdesc1 h6{
+	color:white;
+	font-family: 'Moon', sans-serif;
+	font-size: 13pt;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#memberdesc2 h6{
+	color:white;
+	font-family: 'Moon', sans-serif;
+	font-size: 13pt;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#memberdesc3 h6{
+	color:white;
+	font-family: 'Moon', sans-serif;
+	font-size: 13pt;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#memberdesc4 h6{
+	color:white;
+	font-family: 'Moon', sans-serif;
+	font-size: 13pt;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#memberdesc5 h6{
+	color:white;
+	font-family: 'Moon', sans-serif;
+	font-size: 13pt;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#memberdesc6 h6{
+	color:white;
+	font-family: 'Moon', sans-serif;
+	font-size: 13pt;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#memberdesc1 p{
+	color:white;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 11pt;
+	text-align: center;
+	margin-bottom: 8px;
+	font-weight: 550;
+	letter-spacing: 0.8px;
+}
+
+#memberdesc2 p{
+	color:white;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 11pt;
+	text-align: center;
+	margin-bottom: 8px;
+	font-weight: 550;
+	letter-spacing: 0.8px;
+}
+
+#memberdesc3 p{
+	color:white;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 11pt;
+	text-align: center;
+	margin-bottom: 8px;
+	font-weight: 550;
+	letter-spacing: 0.8px;
+}
+
+#memberdesc4 p{
+	color:white;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 11pt;
+	text-align: center;
+	margin-bottom: 8px;
+	font-weight: 550;
+	letter-spacing: 0.8px;
+}
+
+#memberdesc5 p{
+	color:white;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 11pt;
+	text-align: center;
+	margin-bottom: 8px;
+	font-weight: 550;
+	letter-spacing: 0.8px;
+}
+
+#memberdesc6 p{
+	color:white;
+	font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 11pt;
+	text-align: center;
+	margin-bottom: 8px;
+	font-weight: 550;
+	letter-spacing: 0.8px;
+}
+
+/*END HOME PAGE*/
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------*/

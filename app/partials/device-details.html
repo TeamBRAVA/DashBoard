@@ -1,37 +1,41 @@
 <!-- Page Content -->
 <div id="page-content-wrapper" ng-controller="DeviceDetailsCtrl">
-    <div id="toolbar">
+    <div id="toolbar" class="high">
         <div class="clearfix"></div>
     </div>
 
-    <div>
-        <h2>Name</h2>
+    <div class="header">
+        <h2 class="title">Name</h2>
         <p>Creation Date : {{details.creationDate | date:'fullDate'}}</p>
         <p>installed version or RED: {{details.installedversionRED == null ? 'none' : details.installedversionRED}}</p>
         <p> list of software installed:</p>
         <div ng-repeat="software in details.softwarelist">
             <a href="#/software/{{software}}">{{software}}</a>
         </div>
-        <p>users : {{details.users}}</p>
-        <p>permissions : {{details.permissions}}</p>
-
-        <div ng-repeat="(key, arr) in data">
-            <h2>{{key}}</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>date</th>
-                        <th>{{key}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="obj in arr">
-                        <td>{{obj.date | date:'fullDate'}}</td>
-                        <td>{{obj.value}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class='pull-right'>
+            <p>users : {{details.users}}</p>
+            <p>permissions : {{details.permissions}}</p>
         </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="content">
+        <ul>
+            <li ng-repeat="(key, arr) in data">
+                <h4 class='title' ng-click="e($event);"><i class="fa fa-plus-circle"></i>{{key}}</h4>
+                <div class="table-condensed unvisible">
+                    <div class="row">
+                        <div class="col-md-3"><span>date</span></div>
+                        <div class="col-md-1"><span>Hours</span></div>
+                        <div class="col-md-8"><span>{{key}}</span></div>
+                    </div>
+                    <div class='row' ng-repeat="obj in arr">
+                        <div class="col-md-3"><span>{{obj.date | date:'fullDate'}}</span></div>
+                        <div class="col-md-1"><span>{{obj.date | date:'mediumTime'}}</span></div>
+                        <div class="col-md-8"><span>{{obj.value}}</span></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
 
     </div>
 

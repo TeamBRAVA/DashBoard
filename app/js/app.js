@@ -40,6 +40,9 @@ redApp.config(['$routeProvider',
         templateUrl: 'partials/register.html',
         controller: 'authControler'
       }).
+      when('/home', {
+        templateUrl: 'partials/home.html'
+      }).
       otherwise({
         redirectTo: '/login'
       });

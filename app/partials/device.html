@@ -13,8 +13,8 @@
 	    	</div>
 	    	<div class="input-group pull-right">
 		    	<form ng-submit="create()">
-		    	<div class="group-icon"><i class="fa fa-plus"></i></div>
-				<input type="number" placeholder="Add devices">
+		    		<div class="group-icon" ng-click="create()"><i class="fa fa-plus"></i></div>
+					<input type="number" ng-model="handle.number" placeholder="Add devices">
 		    	</form>
 	    	</div>
 	    	<div class="clearfix"></div>
@@ -27,13 +27,13 @@
 		                <img src="http://www.robotshop.com/media/catalog/product/cache/15/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/p/sphero-star-wars-bb-8-bluetooth-smartphone-controlled-robotic-ball.jpg" class="img-responsive">
 	                </div>
 	                <div class="col-xs-8">
-	                    <span class="nom">Nom{{summary.name}}</span>
-	                    <span class="description">Description{{summary.description}}</span>
-	                    <span class="date">Creation Date : {{summary.creationDate | date:'fullDate'}}</span>
+	                    <span class="nom">{{summary.name || "Name"}}</span>
+	                    <span class="description">{{summary.description || "Description"}}</span>
+	                    <span class="date">{{summary.creationDate | date:'fullDate' || "Creation Date"}}</span>
 	                </div>
                 </div>
-                <div class="device-permissions"><strong>{{summary.permissions}}</strong>Permissions</div>
-                <div class="device-users"><strong>{{summary.permissions}}</strong>Users</div>
+                <div class="device-permissions"><strong>{{summary.permissions || "-"}}</strong>Permissions</div>
+                <div class="device-users"><strong>{{summary.users || "-"}}</strong>Users</div>
             </div>
         </a>
     </ul>

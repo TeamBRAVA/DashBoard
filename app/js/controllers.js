@@ -17,6 +17,14 @@ redControllers.controller('HeaderCtrl', ['$scope', '$location', 'Auth', function
 // Get the user informations given its session token
 redControllers.controller('userCtrl', 
     ['$scope', '$location', '$http', 'Auth', function ($scope, $location, $http, Auth) { 
+
+    function authorized() {
+        var l = $location.path()
+        if( l == '/login' || l == '/register' || l == '/home' || l == '/about' || l == '/login' )
+            return true;
+        else
+            return false;
+    }
     
     $scope.$on('$locationChangeSuccess', function() {
 
@@ -33,11 +41,14 @@ redControllers.controller('userCtrl',
                 }).success( function (data) {
                     $scope.user = data;
                 }).error( function (err) {
-                    console.log(err);
-                    $location.path('/login');
+                    console.log("error");
+                    Auth.removeCookie();
+                    if(!authorized())
+                        $location.path('/login');
                 });
         } else {
-            $location.path('/login');
+            if(!authorized())
+                $location.path('/login');
         }
 
     });
@@ -50,6 +61,11 @@ redControllers.controller('DeviceDetailsCtrl',
 
     $scope.token = Auth.getCookie();
     $scope.id = $routeParams.id;
+
+    $scope.e = function(event) {
+        console.log(event)
+        jQuery(event.target).next().toggleClass('unvisible'); 
+    }
 
     $http({ method: 'GET',
             url: url + '/user/device/summary/'+$scope.id,
@@ -94,7 +110,7 @@ redControllers.controller('DeviceContainerCtrl',
 
 
 redControllers.controller('DeviceCtrl', 
-    ['$scope', '$location', '$http', 'Auth', function ($scope, $location, $http, Auth) { 
+    ['$scope', '$location', '$http', 'Auth','$route', function ($scope, $location, $http, Auth, $route) { 
     
     $scope.token = Auth.getCookie();
     $scope.handle = {}; // create a new data model
@@ -111,6 +127,7 @@ redControllers.controller('DeviceCtrl',
         });
 
     $scope.create = function () {
+        if($scope.handle.number == undefined) return;
         $http({
             method: 'GET',
             url: url + '/user/device/new/'+$scope.handle.number,
@@ -118,7 +135,7 @@ redControllers.controller('DeviceCtrl',
                 'Authorization': 'Bearer ' + $scope.token,
             }
         }).success(function (result) {
-            console.log(result);
+            $route.reload();
         }).error(function (err) {
             console.log(err);
         });
@@ -155,7 +172,7 @@ redControllers.controller('authControler',
 
     $scope.register = function () {
         $http.post(url + '/register', $scope.userData)
-            .success(function (token) {
+            .success(function (result) {
                 //redirect to routes
                 Auth.setCookie(result.token);
                 $location.path('/device');
@@ -250,6 +267,8 @@ redControllers.controller('SoftwareContainerCtrl',
         inc = parseInt(inc); inc++;
         version[version.length-1] = inc.toString();
         jQuery('#soft-version').val(version.join('.'));
+
+        console.log($scope);
 
     }
 
